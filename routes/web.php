@@ -13,6 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/menyapa', function () {
+    return 'Halo bintang keren';
 });
+
+Route::group(['namespace' => 'App\Http\Controllers'], function()
+{
+Route::get('/', 'PagesController@index')->name('pages.index');
+Route::get('/about', 'PagesController@about')->name('pages.about');
+Route::get('/product', 'PagesController@products')->name('product.products');
+Route::get('/maps', 'PagesController@address')->name('maps.address');
+Route::get('/sosmed', 'PagesController@socials')->name('sosmed.socials');
+
+//Route get ManagemenUserController
+Route::resource('user', 'ManagementUserController');
+
+
+
+});
+
